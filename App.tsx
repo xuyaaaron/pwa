@@ -4,7 +4,9 @@ import EntryView from './views/EntryView';
 import RankingsView from './views/RankingsView';
 import TeamView from './views/TeamView';
 import PersonalView from './views/PersonalView';
+import WeeklyView from './views/WeeklyView';
 import { TabId } from './types';
+import { PasswordGate } from './components/PasswordGate';
 
 const App: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<TabId>('entry');
@@ -27,18 +29,22 @@ const App: React.FC = () => {
         return <TeamView />;
       case 'personal':
         return <PersonalView />;
+      case 'weekly':
+        return <WeeklyView />;
       default:
         return <EntryView />;
     }
   };
 
   return (
-    <div className="min-h-screen bg-background text-gray-900 font-sans max-w-md mx-auto relative shadow-2xl overflow-hidden flex flex-col">
-      <main className="flex-1 overflow-y-auto overflow-x-hidden scroll-smooth no-scrollbar">
-        {renderContent()}
-      </main>
-      <BottomNav currentTab={currentTab} onTabChange={setCurrentTab} />
-    </div>
+    <PasswordGate>
+      <div className="min-h-[100dvh] w-full bg-background text-gray-900 font-sans relative overflow-x-hidden p-0 m-0">
+        <main className="w-full pb-[80px]">
+          {renderContent()}
+        </main>
+        <BottomNav currentTab={currentTab} onTabChange={setCurrentTab} />
+      </div>
+    </PasswordGate>
   );
 };
 

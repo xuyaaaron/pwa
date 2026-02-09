@@ -3,6 +3,7 @@
   "short_name": "AlphaTrack",
   "start_url": "./index.html",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#f2f2f7",
   "theme_color": "#ffffff",
   "icons": [
